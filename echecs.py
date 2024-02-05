@@ -22,6 +22,12 @@ class PlateauDeJeu:
         # Ligne du roi
         self.cases[(0, 0)] = Piece('Tour')
         self.cases[(0, 1)] = Piece('Cavalier')
+        self.cases[(0, 2)] = Piece('Fou')
+        self.cases[(0, 3)] = Piece('Reine')
+        self.cases[(0, 4)] = Piece('Roi')
+        self.cases[(0, 5)] = Piece('Fou')
+        self.cases[(0, 6)] = Piece('Cavalier')
+        self.cases[(0, 7)] = Piece('Tour')
 
 
     def case_occupee(self, position):
@@ -52,6 +58,9 @@ class PlateauDeJeu:
             delta_x = abs(destination[0] - origine[0])
             delta_y = abs(destination[1] - origine[1])
             return (delta_x == 1 and delta_y == 2) or (delta_x == 2 and delta_y == 1)
+        elif piece.nom == 'Fou':
+            # Fou se déplacer en diagonale
+            return abs(destination[0] - origine[0]) == abs(destination[1] - origine[1])
 
         return False
 
