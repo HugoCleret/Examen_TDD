@@ -69,23 +69,36 @@ class PlateauDeJeu:
                 return True
             elif destination[0] == origine[0] + 1 and destination[1] == origine[1] - 1:
                 return True
+            
         #deplacement Tour :
         elif piece.nom == 'Tour':
             return origine[0] == destination[0] or origine[1] == destination[1]
+        
         #deplacement Cavalier :
         elif piece.nom == 'Cavalier':
             # Cavalier en L
             delta_x = abs(destination[0] - origine[0])
             delta_y = abs(destination[1] - origine[1])
             return (delta_x == 1 and delta_y == 2) or (delta_x == 2 and delta_y == 1)
+        
+        #deplacement fou : 
         elif piece.nom == 'Fou':
             # Fou se déplace en diagonale
             return abs(destination[0] - origine[0]) == abs(destination[1] - origine[1])
+        
+        #deplacement Reine : 
         elif piece.nom == 'Reine':
             # Reine se déplace horizontalement verticalement et en diagonale
             return origine[0] == destination[0] or origine[1] == destination[1] or \
                    abs(destination[0] - origine[0]) == abs(destination[1] - origine[1]) or \
                    (origine[0] == destination[0] and origine[1] == destination[1])
+        
+        #deplacement Roi : 
+        elif piece.nom == 'Roi':
+            # Roi se déplace d'une case dans n'importe quelle sens
+            delta_x = abs(destination[0] - origine[0])
+            delta_y = abs(destination[1] - origine[1])
+            return delta_x <= 1 and delta_y <= 1
         return False
 
     def deplacer_piece(self, origine, destination):

@@ -76,5 +76,24 @@ class TestPlateauDeJeu(unittest.TestCase):
         self.assertEqual(plateau.cases[(3, 3)].nom, 'Reine')
         self.assertFalse(plateau.case_occupee((0, 3)))
 
+    #deplacement roi :
+    def test_deplacement_roi_horizontal(self):
+        plateau = PlateauDeJeu()
+        plateau.deplacer_piece((0, 4), (0, 5)) 
+        self.assertEqual(plateau.cases[(0, 5)].nom, 'Roi')
+        self.assertFalse(plateau.case_occupee((0, 4)))
+
+    def test_deplacement_roi_vertical(self):
+        plateau = PlateauDeJeu()
+        plateau.deplacer_piece((0, 4), (1, 4)) 
+        self.assertEqual(plateau.cases[(1, 4)].nom, 'Roi')
+        self.assertFalse(plateau.case_occupee((0, 4)))
+
+    def test_deplacement_roi_diagonale_haut_droite(self):
+        plateau = PlateauDeJeu()
+        plateau.deplacer_piece((0, 4), (1, 5)) 
+        self.assertEqual(plateau.cases[(1, 5)].nom, 'Roi')
+        self.assertFalse(plateau.case_occupee((0, 4)))
+
 if __name__ == '__main__':
     unittest.main()
