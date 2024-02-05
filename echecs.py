@@ -9,7 +9,7 @@ class PlateauDeJeu:
 
     def initialiser_pieces(self):
         # Ajouts des pieces sur le plateau
-
+        # Les blancs
         # Ligne des pions 
         self.cases[(1, 0)] = Piece('Pion')
         self.cases[(1, 1)] = Piece('Pion')
@@ -28,6 +28,26 @@ class PlateauDeJeu:
         self.cases[(0, 5)] = Piece('Fou')
         self.cases[(0, 6)] = Piece('Cavalier')
         self.cases[(0, 7)] = Piece('Tour')
+
+        # Les noirs
+        # Ligne des pions 
+        self.cases[(6, 0)] = Piece('Pion')
+        self.cases[(6, 1)] = Piece('Pion')
+        self.cases[(6, 2)] = Piece('Pion')
+        self.cases[(6, 3)] = Piece('Pion')
+        self.cases[(6, 4)] = Piece('Pion')
+        self.cases[(6, 5)] = Piece('Pion')
+        self.cases[(6, 6)] = Piece('Pion')
+        self.cases[(6, 7)] = Piece('Pion')
+        # Ligne du roi
+        self.cases[(7, 0)] = Piece('Tour')
+        self.cases[(7, 1)] = Piece('Cavalier')
+        self.cases[(7, 2)] = Piece('Fou')
+        self.cases[(7, 3)] = Piece('Reine')
+        self.cases[(7, 4)] = Piece('Roi')
+        self.cases[(7, 5)] = Piece('Fou')
+        self.cases[(7, 6)] = Piece('Cavalier')
+        self.cases[(7, 7)] = Piece('Tour')
 
 
     def case_occupee(self, position):
@@ -59,9 +79,13 @@ class PlateauDeJeu:
             delta_y = abs(destination[1] - origine[1])
             return (delta_x == 1 and delta_y == 2) or (delta_x == 2 and delta_y == 1)
         elif piece.nom == 'Fou':
-            # Fou se déplacer en diagonale
+            # Fou se déplace en diagonale
             return abs(destination[0] - origine[0]) == abs(destination[1] - origine[1])
-
+        elif piece.nom == 'Reine':
+            # Reine se déplace horizontalement verticalement et en diagonale
+            return origine[0] == destination[0] or origine[1] == destination[1] or \
+                   abs(destination[0] - origine[0]) == abs(destination[1] - origine[1]) or \
+                   (origine[0] == destination[0] and origine[1] == destination[1])
         return False
 
     def deplacer_piece(self, origine, destination):
