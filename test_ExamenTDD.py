@@ -7,7 +7,7 @@ class TestPlateauDeJeu(unittest.TestCase):
     def test_initialisation_plateau(self):
         plateau = PlateauDeJeu()
         self.assertEqual(len(plateau.cases), 64)  # Le plateau comporte 64 cases. 8 cases à l'horizontal et 8 cases à la verticale.
-        self.assertTrue(plateau.case_occupee((0, 0)))  # Vérifie qu'une case spécifique est occupée
+        self.assertTrue(plateau.case_occupee((0, 0)))  # Vérification de la case (O,O Tour) spécifique est occupée pour initialisation de la game
 
     def test_deplacement_pion(self):
         plateau = PlateauDeJeu()
