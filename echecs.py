@@ -35,6 +35,9 @@ class PlateauDeJeu:
                 return True
             elif destination[0] == origine[0] + 1 and destination[1] == origine[1] - 1:
                 return True
+        elif piece.nom == 'Tour':
+            return origine[0] == destination[0] or origine[1] == destination[1]
+
 
         return False
 

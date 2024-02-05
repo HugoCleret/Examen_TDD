@@ -30,6 +30,18 @@ class TestPlateauDeJeu(unittest.TestCase):
         self.assertEqual(plateau.cases[(2, 0)].nom, 'Pion') 
         self.assertFalse(plateau.case_occupee((1, 1)))  
 
+    #deplacement Tour :
+    def test_deplacement_tour_horizontal(self):
+        plateau = PlateauDeJeu()
+        plateau.deplacer_piece((0, 0), (0, 4))  # Déplace la tour horizontalement
+        self.assertEqual(plateau.cases[(0, 4)].nom, 'Tour')
+        self.assertFalse(plateau.case_occupee((0, 0)))
+
+    def test_deplacement_tour_vertical(self):
+        plateau = PlateauDeJeu()
+        plateau.deplacer_piece((0, 0), (4, 0))  # Déplace la tour verticalement
+        self.assertEqual(plateau.cases[(4, 0)].nom, 'Tour')
+        self.assertFalse(plateau.case_occupee((0, 0)))
 
 if __name__ == '__main__':
     unittest.main()
