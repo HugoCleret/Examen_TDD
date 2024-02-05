@@ -13,8 +13,16 @@ class PlateauDeJeu:
         # Ligne des pions 
         self.cases[(1, 0)] = Piece('Pion')
         self.cases[(1, 1)] = Piece('Pion')
+        self.cases[(1, 2)] = Piece('Pion')
+        self.cases[(1, 3)] = Piece('Pion')
+        self.cases[(1, 4)] = Piece('Pion')
+        self.cases[(1, 5)] = Piece('Pion')
+        self.cases[(1, 6)] = Piece('Pion')
+        self.cases[(1, 7)] = Piece('Pion')
         # Ligne du roi
         self.cases[(0, 0)] = Piece('Tour')
+        self.cases[(0, 1)] = Piece('Cavalier')
+
 
     def case_occupee(self, position):
         return self.cases[position] is not None
@@ -35,9 +43,15 @@ class PlateauDeJeu:
                 return True
             elif destination[0] == origine[0] + 1 and destination[1] == origine[1] - 1:
                 return True
+        #deplacement Tour :
         elif piece.nom == 'Tour':
             return origine[0] == destination[0] or origine[1] == destination[1]
-
+        #deplacement Cavalier :
+        elif piece.nom == 'Cavalier':
+            # Cavalier en L
+            delta_x = abs(destination[0] - origine[0])
+            delta_y = abs(destination[1] - origine[1])
+            return (delta_x == 1 and delta_y == 2) or (delta_x == 2 and delta_y == 1)
 
         return False
 
